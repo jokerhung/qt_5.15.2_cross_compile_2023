@@ -4,10 +4,6 @@ Raspberry Pi Toolchains(raspberry-pi-cross-compilers): This project
 provides latest automated GCC Cross Compiler & Native (ARM & ARM64) 
 build-scripts and precompiled standalone toolchains for Raspberry Pi.
 
-
-Copyright (C) 2020 Abhishek Thakur(@abhiTronix) <abhi.una12@gmail.com>
-
-
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
@@ -816,45 +812,7 @@ sudo ldconfig
 🍻 _That should be it! You have now succesfully installed latest QT 5.15.2 on the Raspberry Pi._
 
 
-&nbsp; 
-
-&nbsp;
-
-# Supporting this Project
-
-**If these binaries helped you big time, please consider supporting it through any size donations.:heart:.**
-
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=for-the-badge)](https://paypal.me/AbhiTronix)
-
-[![ko-fi][kofi-badge]][kofi]
-
-***Also please share your [**thoughts**](https://sourceforge.net/projects/raspberry-pi-cross-compilers/reviews) or just drop a [star :star:](https://github.com/abhiTronix/raspberry-pi-cross-compilers/stargazers).***
-
-&nbsp;
-
-&nbsp;
-
-# Citing
-
-**Here is a Bibtex entry you can use to cite this project in a publication:**
-
-```BibTeX
-@misc{raspberry-pi-cross-compilers,
-    Title = {Raspberry Pi Toolchains},
-    Author = {Abhishek Thakur},
-    howpublished = {\url{https://github.com/abhiTronix/raspberry-pi-cross-compilers}},
-    year = {2020}  
-  }
-```
-
-&nbsp;
-
-&nbsp;
-
-
 # Copyright License
-
-**Copyright © 2020 abhiTronix**
 
 This Project source-code and its precompiled binaries are licensed under the [**GPL-3.0**][license] license.
 
@@ -865,17 +823,4 @@ This Project source-code and its precompiled binaries are licensed under the [**
 
 # Acknowledgments
 
-- This document is insipired by [Qt-Instructions for Raspberry Pi 4](https://github.com/UvinduW/Cross-Compiling-Qt-for-Raspberry-Pi-4). Huge thanks to @UvinduW.
-- Thank you [QT framework](https://www.qt.io/), for providing the source files
-
-[downloads]:https://sourceforge.net/projects/raspberry-pi-cross-compilers/files
-[license]:https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/LICENSE
-[kofi]:https://ko-fi.com/W7W8WTYO
-[gnu]:https://gcc.gnu.org/
-[pi-project]:https://www.raspberrypi.org/
-[sf-project]:https://sourceforge.net
-[git-action]:https://github.com/features/actions
-[tar]:https://www.gnu.org/software/tar/
-[pigz]:https://zlib.net/pigz/
-[license-badge]:https://img.shields.io/github/license/abhiTronix/raspberry-pi-cross-compilers.svg?style=flat&logo=gnu
-[kofi-badge]:https://www.ko-fi.com/img/githubbutton_sm.svg
+- This document is insipired by [Cross-Compile QT Framework for any Rasperberry Pi](https://github.com/abhiTronix/raspberry-pi-cross-compilers/blob/master/QT_build_instructions.md#stepssettings-for-host-machine-pclaptop). Huge thanks to @abhiTronix.
