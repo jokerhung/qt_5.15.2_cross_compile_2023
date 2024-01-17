@@ -418,7 +418,7 @@ Finally, Now we can configure our QT build. We need to run the `configure` scrip
 ```sh
 CROSS_COMPILER_LOCATION=$HOME/rpi-qt/tools/cross-pi-gcc-*
 
-../qt-everywhere-src-5.15.2/configure -release -opengl es2  -eglfs -device linux-rasp-pi4-v3d-g++ -device-option CROSS_COMPILE=$(echo $CROSS_COMPILER_LOCATION)/bin/arm-linux-gnueabihf- -sysroot ~/rpi-qt/sysroot/ -prefix /usr/local/qt5.15 -extprefix ~/rpi-qt/qt5.15 -opensource -confirm-license -skip qtscript -skip qtwayland -skip qtwebengine -nomake tests -make libs -pkg-config -no-use-gold-linker -v -recheck -L$HOME/rpi-qt/sysroot/usr/lib/arm-linux-gnueabihf -I$HOME/rpi-qt/sysroot/usr/include/arm-linux-gnueabihf -qpa eglfs no-feature-eglfs_brcm
+../qt-everywhere-src-5.15.2/configure -release -opengl es2  -eglfs -device linux-rasp-pi4-v3d-g++ -device-option CROSS_COMPILE=$(echo $CROSS_COMPILER_LOCATION)/bin/arm-linux-gnueabihf- -sysroot ~/rpi-qt/sysroot/ -prefix /usr/local/qt5.15 -extprefix ~/rpi-qt/qt5.15 -opensource -confirm-license -skip qtscript -skip qtwayland -skip qtwebengine -nomake tests -make libs -pkg-config -no-use-gold-linker -v -recheck -L$HOME/rpi-qt/sysroot/usr/lib/arm-linux-gnueabihf -I$HOME/rpi-qt/sysroot/usr/include/arm-linux-gnueabihf -qpa eglfs -no-feature-eglfs_brcm
 ```
 
 The configure script may take a few minutes to complete.
