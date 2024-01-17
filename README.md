@@ -403,7 +403,7 @@ It is possible to use either the proprietary EGL blobs from Broadcom or the Mesa
 | Graphics driver	 | Required package(s) | Information |
 | ---------- | :--------: | :------: |
 | Broadcom EGL ( For vintage Pi, Zero, Pi 2, Pi 3, CM 1, CM3 ) <br><br> 32-bit only | libraspberrypi-dev | Required for all pre-Pi 4 boards if not using open source GL drivers.
-| VC4 driver Mandatory on Raspberry Pi 4 <br><br> Mandatory on 64-bit | libgles2-mesa-dev <br><br> libgbm-dev <br><br> libdrm-dev | Use -device linux-rasp-pi4-v3d-g++ <br><br> make sure to use/add the option: no-feature-eglfs_brcm to disable any usage of the old brcm libraries.
+| VC4 driver Mandatory on Raspberry Pi 4 <br><br> Mandatory on 64-bit | libgles2-mesa-dev <br>libgbm-dev <br>libdrm-dev | Use -device linux-rasp-pi4-v3d-g++ <br><br> make sure to use/add the option: no-feature-eglfs_brcm to disable any usage of the old brcm libraries.
 
 #### B. Configure the Qt 5 build eviroment:
 
@@ -816,10 +816,7 @@ sudo ldconfig
 
 This Project source-code and its precompiled binaries are licensed under the [**GPL-3.0**][license] license.
 
-
 &nbsp; 
-
-&nbsp;
 
 # Acknowledgments
 
