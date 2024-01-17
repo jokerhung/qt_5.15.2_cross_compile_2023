@@ -401,6 +401,16 @@ sudo chmod +x sysroot-relativelinks.py
 
 ### 8. Configure QT Build
 
+#### A. Graphics driver options:
+It is possible to use either the proprietary EGL blobs from Broadcom or the Mesa open source drivers. Broadcom drivers can be used on all older Pi variants, but not on any Pi 4 variants (Pi4, 400, Compute Module 4). For those you need to use Mesa.
+
+| Graphics driver	 | Required package(s) | Information |
+| ---------- | :--------: | :------: |
+| Broadcom EGL ( For vintage Pi, Zero, Pi 2, Pi 3, CM 1, CM3 ) <br><br> 32-bit only | libraspberrypi-dev | Required for all pre-Pi 4 boards if not using open source GL drivers.
+| VC4 driver Mandatory on Raspberry Pi 4 <br><br> Mandatory on 64-bit | libgles2-mesa-dev <br><br> libgbm-dev <br><br> libdrm-dev | Use -device linux-rasp-pi4-v3d-g++ <br><br> make sure to use/add the option: no-feature-eglfs_brcm to disable any usage of the old brcm libraries.
+
+#### B. Configure the Qt 5 build eviroment:
+
 Let's move into the `build` directory for further steps, as we don't want to build within that source directory as its crowded, so we will access it from within this this directory:
 
 ```sh
@@ -412,12 +422,25 @@ Finally, Now we can configure our QT build. We need to run the `configure` scrip
 ```sh
 CROSS_COMPILER_LOCATION=$HOME/rpi-qt/tools/cross-pi-gcc-*
 
-../qt-everywhere-src-5.15.2/configure -release -opengl es2  -eglfs -device linux-rasp-pi4-v3d-g++ -device-option CROSS_COMPILE=$(echo $CROSS_COMPILER_LOCATION)/bin/arm-linux-gnueabihf- -sysroot ~/rpi-qt/sysroot/ -prefix /usr/local/qt5.15 -extprefix ~/rpi-qt/qt5.15 -opensource -confirm-license -skip qtscript -skip qtwayland -skip qtwebengine -nomake tests -make libs -pkg-config -no-use-gold-linker -v -recheck -L$HOME/rpi-qt/sysroot/usr/lib/arm-linux-gnueabihf -I$HOME/rpi-qt/sysroot/usr/include/arm-linux-gnueabihf
+../qt-everywhere-src-5.15.2/configure -release -opengl es2  -eglfs -device linux-rasp-pi4-v3d-g++ -device-option CROSS_COMPILE=$(echo $CROSS_COMPILER_LOCATION)/bin/arm-linux-gnueabihf- -sysroot ~/rpi-qt/sysroot/ -prefix /usr/local/qt5.15 -extprefix ~/rpi-qt/qt5.15 -opensource -confirm-license -skip qtscript -skip qtwayland -skip qtwebengine -nomake tests -make libs -pkg-config -no-use-gold-linker -v -recheck -L$HOME/rpi-qt/sysroot/usr/lib/arm-linux-gnueabihf -I$HOME/rpi-qt/sysroot/usr/include/arm-linux-gnueabihf -qpa eglfs no-feature-eglfs_brcm
 ```
 
 The configure script may take a few minutes to complete.
 
-#### 8.1 Check Configure Output: 
+## Qt build configuration options explained
+
+| Option | Description | Why is this option used |
+| ---------- | :--------: | :------: |
+| -v | Verbose configuration output	| To see what is going on |
+| -opengl es2 -eglfs | Use OpenGL ES and use Qt EGLFS platform plugin | So we don't need to run X11 |
+| -opensource -confirm-license | Select open source license build, don't prompt for license	| License needs to be set |
+| -release | Use release build options (optimized libraries and binaries)	| For speed |
+| -nomake examples -no-compile-examples <br>-nomake tests | Skip building of example applications and tests. | Takes time and space |
+| -skip XXX | Skip module | Some module  a lot of time and space to build |
+| -extprefix ~/rpi-qt/qt5.15 | Installation prefix for the Qt framework. | Folder you will find QT binaries and library
+| -qpa eglfs | Default platform abstraction plugin to use for applications. <br>Change this if you prefer using something else, for example xcb | Selects the default platform plugin, on Pi EGLS is nice so you don't need to run X11
+
+#### C. Check Configure Output: 
 
 Once it is completed you should get a summary of what has been configured. Make sure the following options appear:
 
@@ -710,7 +733,7 @@ QPA backends:
     EGLFS GBM ............................ yes
     EGLFS VSP2 ........................... no
     EGLFS Mali ........................... no
-    EGLFS Raspberry Pi ................... no	[SHOULD BE NO]
+    EGLFS Raspberry Pi ................... no	[MUST BE NO]
     EGLFS X11 ............................ yes
 ```
 
